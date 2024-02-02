@@ -58,6 +58,9 @@ devDependencies:
   "@storybook/test":
     specifier: ^7.6.12
     version: 7.6.12
+  "@types/node":
+    specifier: ^20.11.16
+    version: 20.11.16
   "@types/react":
     specifier: ^18.2.43
     version: 18.2.51
