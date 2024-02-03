@@ -22,12 +22,14 @@ export default function Home() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Page className="text-center text-lg">
-      <h1 className="mb-2 font-medium text-4xl ">Welcome to the home page</h1>
-      <p className="mb-8">Coming soon...</p>
-      <p>
-        <strong>Redirecting to recipes in {timer} seconds</strong>
-      </p>
+    <Page className="textcontainer px-8 py-14 lg:px-12 xl:px-16 text-center">
+      <main>
+        <h1 className="mb-2 font-medium text-4xl ">Welcome to the home page</h1>
+        <p className="mb-8">Coming soon...</p>
+        <p>
+          <strong>Redirecting to recipes in {timer} seconds</strong>
+        </p>
+      </main>
     </Page>
   );
 }

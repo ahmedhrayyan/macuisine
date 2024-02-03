@@ -17,7 +17,7 @@ interface IPaginationProps {
 }
 
 export default function Pagination({ numOfItems, itemsPerPage = 10, maxPages = 5 }: IPaginationProps) {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = parseInt(searchParams.get("page") || "1");
   const totalPages = Math.ceil(numOfItems / itemsPerPage) || 1;
   const pages = useMemo(() => range(1, totalPages + 1), [totalPages]);
@@ -35,12 +35,22 @@ export default function Pagination({ numOfItems, itemsPerPage = 10, maxPages = 5
   }, [currentPage, pages.length, maxPages]); // eslint-disable-line react-hooks/exhaustive-deps
   const lastPage = last(shownPages);
 
+  function handlePageChange(page: number) {
+    searchParams.set("page", page.toString());
+    setSearchParams(searchParams);
+  }
+
   return (
     <ShadcnPagination>
       <PaginationContent>
         {shownPages[0] !== 1 && (
           <PaginationItem>
-            <PaginationLink href={`?page=1`} isActive={currentPage === 1}>
+            <PaginationLink
+              isActive={currentPage === 1}
+              onClick={() => {
+                handlePageChange(1);
+              }}
+            >
               {1}
             </PaginationLink>
           </PaginationItem>
@@ -52,7 +62,12 @@ export default function Pagination({ numOfItems, itemsPerPage = 10, maxPages = 5
         )}
         {shownPages.map((page) => (
           <PaginationItem key={page}>
-            <PaginationLink href={`?page=${page}`} isActive={currentPage === page}>
+            <PaginationLink
+              isActive={currentPage === page}
+              onClick={() => {
+                handlePageChange(page);
+              }}
+            >
               {page}
             </PaginationLink>
           </PaginationItem>
@@ -64,7 +79,12 @@ export default function Pagination({ numOfItems, itemsPerPage = 10, maxPages = 5
         )}
         {lastPage !== pages.length && (
           <PaginationItem>
-            <PaginationLink href={`?page=${pages.length}`} isActive={currentPage === pages.length}>
+            <PaginationLink
+              isActive={currentPage === pages.length}
+              onClick={() => {
+                handlePageChange(pages.length);
+              }}
+            >
               {pages.length}
             </PaginationLink>
           </PaginationItem>
