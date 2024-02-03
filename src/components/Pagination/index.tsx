@@ -19,7 +19,7 @@ interface IPaginationProps {
 export default function Pagination({ numOfItems, itemsPerPage = 10, maxPages = 5 }: IPaginationProps) {
   const [searchParams] = useSearchParams();
   const currentPage = parseInt(searchParams.get("page") || "1");
-  const totalPages = Math.ceil(numOfItems / itemsPerPage);
+  const totalPages = Math.ceil(numOfItems / itemsPerPage) || 1;
   const pages = useMemo(() => range(1, totalPages + 1), [totalPages]);
   const shownPages = useMemo(() => {
     if (!maxPages || pages.length <= maxPages) return pages;
@@ -33,6 +33,7 @@ export default function Pagination({ numOfItems, itemsPerPage = 10, maxPages = 5
 
     return pages.slice(startIndex, endIndex);
   }, [currentPage, pages.length, maxPages]); // eslint-disable-line react-hooks/exhaustive-deps
+  const lastPage = last(shownPages);
 
   return (
     <ShadcnPagination>
@@ -56,12 +57,12 @@ export default function Pagination({ numOfItems, itemsPerPage = 10, maxPages = 5
             </PaginationLink>
           </PaginationItem>
         ))}
-        {(last(shownPages) as number) < pages.length - 1 && (
+        {lastPage && lastPage < pages.length - 1 && (
           <PaginationItem>
             <PaginationEllipsis />
           </PaginationItem>
         )}
-        {last(shownPages) !== pages.length && (
+        {lastPage !== pages.length && (
           <PaginationItem>
             <PaginationLink href={`?page=${pages.length}`} isActive={currentPage === pages.length}>
               {pages.length}
