@@ -10,7 +10,7 @@ export default function Layout() {
       <div className="flex-shrink-0">
         <Sidebar open={open} onOpenChange={setOpen} />
       </div>
-      <div className="flex-grow px-8 py-12 lg:px-12">
+      <div className="container flex-grow px-8 py-12 lg:px-12 xl:px-16">
         <div className="mb-16">
           <Header
             setSidebarOpenChange={setOpen}

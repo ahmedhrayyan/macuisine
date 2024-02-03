@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <Page className="text-center text-lg">
       <h1 className="mb-2 font-medium text-4xl ">Welcome to the home page</h1>
-      <p className="mb-8">Currently under development</p>
+      <p className="mb-8">Coming soon...</p>
       <p>
         <strong>Redirecting to recipes in {timer} seconds</strong>
       </p>

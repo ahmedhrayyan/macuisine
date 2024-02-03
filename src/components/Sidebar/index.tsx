@@ -11,7 +11,16 @@ interface ISidebarProps {
 
 export default function Sidebar(props: ISidebarProps) {
   const isDesktop = useMediaQuery("(min-width: 1024px)");
-  if (isDesktop) return <SidebarContent />;
+  if (isDesktop)
+    return (
+      <>
+        {/*// sidebar placeholder*/}
+        <div className="w-80" />
+        <div className="fixed">
+          <SidebarContent />
+        </div>
+      </>
+    );
 
   return (
     <Sheet {...props}>

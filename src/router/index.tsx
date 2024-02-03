@@ -11,6 +11,10 @@ const router = createBrowserRouter([
         index: true,
         element: <Home />,
       },
+      {
+        path: "recipes",
+        lazy: () => import("../routes/Recipes"),
+      },
     ],
   },
 ]);
