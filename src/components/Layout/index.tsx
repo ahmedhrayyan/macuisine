@@ -9,7 +9,7 @@ export default function Layout() {
     <div className="flex">
       <Sidebar open={open} onOpenChange={setOpen} />
       <div className="flex-grow p-12">
-        <div className="mb-12">
+        <div className="mb-16">
           <Header
             setSidebarOpenChange={setOpen}
             onSearch={(query) => {
