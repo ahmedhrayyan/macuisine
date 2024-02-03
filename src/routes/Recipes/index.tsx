@@ -8,8 +8,12 @@ import Pagination from "@/components/Pagination";
 import range from "lodash/range";
 import { Skeleton } from "@/components/ui/skeleton.tsx";
 import { AspectRatio } from "@/components/ui/aspect-ratio.tsx";
+import useLayout from "@/hooks/useLayout.ts";
+import { useDebounce } from "@uidotdev/usehooks";
 
 export function Component() {
+  const { query } = useLayout();
+  const debouncedQuery = useDebounce(query, 500);
   const [searchParams] = useSearchParams();
   const currentPage = parseInt(searchParams.get("page") || "1");
   const [data, setData] = useState<AxiosResponse<ISearchResult<IRecipe>>>();
@@ -18,14 +22,14 @@ export function Component() {
   useEffect(() => {
     setIsLoading(true);
     void recipesApi
-      .complexSearch({ params: { offset: (currentPage - 1) * 10 } })
+      .complexSearch({ params: { query: debouncedQuery, offset: (currentPage - 1) * 10 } })
       .then((response) => {
         setData(response);
       })
       .finally(() => {
         setIsLoading(false);
       });
-  }, [currentPage]);
+  }, [currentPage, debouncedQuery]);
 
   return (
     <Page documentTitle="Recipes">

@@ -3,13 +3,10 @@ import { CookingPot, HomeIcon } from "lucide-react";
 import SidebarLink from "@/components/Sidebar/SidebarLink.tsx";
 import { Sheet, SheetContent } from "@/components/ui/sheet.tsx";
 import { useMediaQuery } from "@uidotdev/usehooks";
+import useLayout from "@/hooks/useLayout.ts";
 
-interface ISidebarProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-}
-
-export default function Sidebar(props: ISidebarProps) {
+export default function Sidebar() {
+  const { onSidebarOpenChange, isSidebarOpen } = useLayout();
   const isDesktop = useMediaQuery("(min-width: 1024px)");
   if (isDesktop)
     return (
@@ -23,7 +20,7 @@ export default function Sidebar(props: ISidebarProps) {
     );
 
   return (
-    <Sheet {...props}>
+    <Sheet open={isSidebarOpen} onOpenChange={onSidebarOpenChange}>
       <SheetContent side="left" className="p-0 pt-6 w-80 bg-white">
         <SidebarContent />
       </SheetContent>
