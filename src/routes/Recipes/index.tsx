@@ -33,7 +33,9 @@ export function Component() {
 
   return (
     <Page documentTitle="Recipes">
-      <h1 className="mb-8 font-medium text-4xl">Popular Recipes</h1>
+      <h1 className="mb-8 font-medium text-4xl">
+        {debouncedQuery ? `Search results for "${debouncedQuery}"` : "Popular Recipes"}
+      </h1>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(320px,1fr))] gap-10">
         {isLoading &&
           range(3).map((i) => (
@@ -48,7 +50,12 @@ export function Component() {
               </div>
             </div>
           ))}
-        {data?.data.results.map((recipe) => <Recipe key={recipe.id} item={recipe} />)}
+        {!isLoading && data?.data.results.map((recipe) => <Recipe key={recipe.id} item={recipe} />)}
+        {data?.data.totalResults === 0 && (
+          <div className="text-center">
+            <p>No recipes found</p>
+          </div>
+        )}
       </div>
       {data && (
         <div className="mt-16">
