@@ -50,6 +50,10 @@ interface IRecipe {
         localizedName: string;
         image: string;
       }[];
+      length?: {
+        number: number;
+        unit: string;
+      };
     }[];
   }[];
 }
