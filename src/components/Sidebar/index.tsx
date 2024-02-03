@@ -25,11 +25,11 @@ export default function Sidebar(props: ISidebarProps) {
 function SidebarContent() {
   return (
     <aside className="w-80 h-[100vh] py-10 overflow-y-auto bg-white">
-      <h1 className="mb-20 text-center">
-        <a href="/" className="w-36">
+      <a href="/" className="block w-36 mb-20 mx-auto">
+        <h1>
           <img src={logo} alt="Macuisine" />
-        </a>
-      </h1>
+        </h1>
+      </a>
       <nav className="w-full">
         <ul className="flex flex-col gap-8">
           <li>

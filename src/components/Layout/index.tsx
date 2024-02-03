@@ -7,8 +7,10 @@ export default function Layout() {
   const [open, setOpen] = useState(false);
   return (
     <div className="flex">
-      <Sidebar open={open} onOpenChange={setOpen} />
-      <div className="flex-grow p-12">
+      <div className="flex-shrink-0">
+        <Sidebar open={open} onOpenChange={setOpen} />
+      </div>
+      <div className="flex-grow px-8 py-12 lg:px-12">
         <div className="mb-16">
           <Header
             setSidebarOpenChange={setOpen}
