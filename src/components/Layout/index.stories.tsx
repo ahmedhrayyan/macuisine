@@ -1,13 +1,13 @@
 import { Meta, StoryObj } from "@storybook/react";
-import Sidebar from "./index";
+import Layout from "./index";
 
-const meta: Meta<typeof Sidebar> = {
-  component: Sidebar,
+const meta: Meta<typeof Layout> = {
+  component: Layout,
   parameters: {
     layout: "fullscreen",
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof Sidebar>;
+type Story = StoryObj<typeof Layout>;
 export const Default: Story = {};

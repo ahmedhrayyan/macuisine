@@ -10,12 +10,12 @@ interface ISidebarProps {
 }
 
 export default function Sidebar(props: ISidebarProps) {
-  const isDesktop = useMediaQuery("(min-width: 768px)");
+  const isDesktop = useMediaQuery("(min-width: 1024px)");
   if (isDesktop) return <SidebarContent />;
 
   return (
     <Sheet {...props}>
-      <SheetContent side="left" className="p-0 w-80">
+      <SheetContent side="left" className="p-0 pt-6 w-80 bg-white">
         <SidebarContent />
       </SheetContent>
     </Sheet>
@@ -34,13 +34,13 @@ function SidebarContent() {
         <ul className="flex flex-col gap-8">
           <li>
             <SidebarLink to="/" end>
-              <HomeIcon />
+              <HomeIcon className="w-7 h-7" />
               Home
             </SidebarLink>
           </li>
           <li>
             <SidebarLink to="/recipes">
-              <CookingPot />
+              <CookingPot className="w-7 h-7" />
               Recipes
             </SidebarLink>
           </li>

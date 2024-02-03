@@ -10,21 +10,21 @@ interface IFormInputs {
 
 interface IHeaderProps {
   onSearch: (query: string) => void;
-  onSidebarToggle: () => void;
+  setSidebarOpenChange: (state: boolean) => void;
 }
 
-export default function Header({ onSearch, onSidebarToggle }: IHeaderProps) {
+export default function Header({ onSearch, setSidebarOpenChange }: IHeaderProps) {
   const form = useForm<IFormInputs>();
 
   return (
     <header className="flex gap-4">
       <Button
         size="icon"
-        className="h-12 w-12 bg-white hover:bg-accent/15 text-primary shadow-xl"
+        className="h-14 w-14 bg-white hover:bg-white text-primary shadow-lg lg:hidden"
         aria-label="Menu"
-        onClick={onSidebarToggle}
+        onClick={() => setSidebarOpenChange(true)}
       >
-        <MenuIcon />
+        <MenuIcon className="w-7 h-7" />
       </Button>
       <Form {...form}>
         <form
@@ -49,7 +49,7 @@ export default function Header({ onSearch, onSidebarToggle }: IHeaderProps) {
                       required
                       placeholder="What do you want to cock today ?"
                       {...field}
-                      className="h-12 ps-14 border-transparent shadow-xl"
+                      className="h-14 text-base ps-14 border-transparent shadow-lg"
                     />
                   </FormControl>
                 </div>
