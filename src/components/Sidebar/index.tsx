@@ -33,7 +33,7 @@ function SidebarContent() {
     <aside className="w-80 h-[100vh] py-10 overflow-y-auto bg-white">
       <a href="/" className="block w-36 mb-20 mx-auto">
         <h1>
-          <img src={logo} alt="Macuisine" />
+          <img src={logo} alt="Macuisine" width="1078" height="906" />
         </h1>
       </a>
       <nav className="w-full">
