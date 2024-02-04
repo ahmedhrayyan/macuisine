@@ -1,6 +1,7 @@
 import Home from "@/routes/Home";
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Layout from "@/components/Layout";
+import ErrorElement from "@/components/ErrorElement";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,21 @@ const router = createBrowserRouter([
       {
         path: "recipes",
         lazy: () => import("../routes/Recipes"),
+        errorElement: <ErrorElement />,
+      },
+      {
+        path: "recipes/:id",
+        lazy: () => import("../routes/RecipeDetails"),
+        errorElement: <ErrorElement />,
+      },
+      {
+        path: "404",
+        lazy: () => import("../routes/NotFound"),
+        errorElement: <ErrorElement />,
+      },
+      {
+        path: "*",
+        element: <Navigate to="/404" replace />,
       },
     ],
   },

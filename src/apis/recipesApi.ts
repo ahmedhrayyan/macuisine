@@ -17,8 +17,13 @@ function complexSearch(config?: AxiosRequestConfig) {
   );
 }
 
+function getRecipeInformation(id: number, config?: AxiosRequestConfig) {
+  return axiosInstance.get<IRecipe>(`/recipes/${id}/information`, config);
+}
+
 const recipesApi = {
   complexSearch,
+  getRecipeInformation,
 };
 
 export default recipesApi;
