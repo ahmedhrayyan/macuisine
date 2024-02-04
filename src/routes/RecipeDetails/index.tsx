@@ -6,6 +6,9 @@ import { AxiosError, AxiosResponse } from "axios";
 import ProgressBar from "@/components/ProgressBar";
 import { AspectRatio } from "@/components/ui/aspect-ratio.tsx";
 import RecipeSteps from "@/components/RecipeSteps";
+import { ArrowLeftIcon } from "lucide-react";
+import { Button } from "@/components/ui/button.tsx";
+import SidebarToggle from "@/components/Sidebar/SidebarToggle.tsx";
 
 export function Component() {
   const { id } = useParams();
@@ -42,23 +45,32 @@ export function Component() {
       {isLoading && <ProgressBar />}
       {recipe && (
         <div className="container max-w-screen-lg">
-          <h2 className="text-4xl font-semibold mb-3">{recipe.data.title}</h2>
-          <p className="text-foreground/60 mb-8">
-            {recipe.data.readyInMinutes} minutes | {recipe.data.servings} servings | {recipe.data.healthScore}% health
-            score
-          </p>
-          <AspectRatio ratio={7 / 3} className="mb-10">
-            <img src={recipe.data.image} alt={recipe.data.title} className="object-cover w-full h-full rounded-md" />
-          </AspectRatio>
-          <h3 className="text-3xl font-semibold mb-3">Summary</h3>
-          <p className="mb-8">{recipe.data.summary.replace(/<[^>]*>/g, "")}</p>
-          <h3 className="text-3xl font-semibold mb-3">Instructions</h3>
-          {recipe.data.analyzedInstructions.map((instruction, i) => (
-            <div key={i}>
-              {instruction.name && <h4>{instruction.name}</h4>}
-              <RecipeSteps steps={instruction.steps} />
-            </div>
-          ))}
+          <header className="flex items-center gap-6 mb-10">
+            <SidebarToggle className="w-11 h-11" />
+            <Button variant="ghost" className="bg-accent hover:bg-accent/80" onClick={() => navigate(-1)}>
+              <ArrowLeftIcon className="w-5 h-5 me-4" />
+              <span>Back to recipes</span>
+            </Button>
+          </header>
+          <main>
+            <h2 className="text-4xl font-semibold mb-3">{recipe.data.title}</h2>
+            <p className="text-foreground/60 mb-8">
+              {recipe.data.readyInMinutes} minutes | {recipe.data.servings} servings | {recipe.data.healthScore}% health
+              score
+            </p>
+            <AspectRatio ratio={7 / 3} className="mb-10">
+              <img src={recipe.data.image} alt={recipe.data.title} className="object-cover w-full h-full rounded-md" />
+            </AspectRatio>
+            <h3 className="text-3xl font-semibold mb-3">Summary</h3>
+            <p className="mb-8">{recipe.data.summary.replace(/<[^>]*>/g, "")}</p>
+            <h3 className="text-3xl font-semibold mb-3">Instructions</h3>
+            {recipe.data.analyzedInstructions.map((instruction, i) => (
+              <div key={i}>
+                {instruction.name && <h4>{instruction.name}</h4>}
+                <RecipeSteps steps={instruction.steps} />
+              </div>
+            ))}
+          </main>
         </div>
       )}
     </Page>
