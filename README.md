@@ -1,30 +1,79 @@
-# React + TypeScript + Vite
+# Macusine React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Macusine uses [Spoonacular API](https://spoonacular.com/food-api) to provide recipes and meal plans.
 
-Currently, two official plugins are available:
+## Motivation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project was created as a part of my recruitment process for the position of Senior Frontend Developer
+at [Robusta Studio](https://desaisiv.com/).
 
-## Expanding the ESLint configuration
+## Tech / Frameworks used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [React](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn/ui](https://ui.shadcn.com/)
+- [Vite](https://vitejs.dev/)
+- [Storybook](https://storybook.js.org/)
+- [Husky](https://typicode.github.io/husky/)
 
-- Configure the top-level `parserOptions` property like this:
+## Requirements
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- [Node.js](https://nodejs.org/en/) >= 18+
+- [pnpm](https://pnpm.io/) >= 6+
+
+## Installation
+
+1. Clone the repo
+2. Install npm dependencies via `pnpm install`
+3. Make sure to fill the empty values in the `.env` file with your own API keys vai creating file `.env.local` or fill
+   manually using the CLI.
+
+````bash
+
+## Start development server
+
+```bash
+pnpm run dev
+````
+
+## Build for production
+
+```bash
+pnpm run build
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Browse app components
+
+```bash
+pnpm run storybook
+```
+
+## Style guide
+
+- Eslint recommended rules
+- Prettier default rules
+- Editorconfig standard rules
+- Husky pre-commit combined with lint-staged hook to lint and format staged files
+
+## Notes
+
+- I am using Husky pre-commit hook with lint-staged to lint and format staged files before commit. So if you want to
+  commit a file that has linting errors, the commit will fail. To bypass this you can use the `--no-verify` flag with
+  the commit command.
+
+- I didn't use any async state management library react-query or SWR because it was required to not use any sort of
+  caching.
+
+- I've chosen to go with tailwindcss and shadcn/ui instead of using css-in-js based libraries like Chakra or
+  Material UI because unlike the latter, tailwindcss and shadcn/ui can be easily migrated to a different framework like
+  Next.js which I think this project can benefit for SEO Next.js provide.
+
+- I didn't implement infinite scroll for the recipes list which In my opinion is a better user experience than
+  pagination but not using any state management library would make it a bit time consuming to implement.
+
+## Credits
+
+- [Spoonacular API](https://spoonacular.com/food-api)
+- [LOGO](https://logo.com/) for creating Macusine wonderful logo :)
+- [CookPal](https://dribbble.com/shots/16307696-CookPal-Web-App-Design) for the inspiration of the design since I was
+  not provided with any UI or design language to follow.
